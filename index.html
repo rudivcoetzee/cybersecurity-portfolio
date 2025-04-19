@@ -6,9 +6,9 @@
     <title>Cybersecurity Portfolio</title>
     <style>
         :root {
-            --primary: #ae00ff;
-            --secondary: #8338ec;
-            --accent: #ff00b3;
+            --primary: #0081cc;
+            --secondary: #ff1a1a;
+            --accent: #ff1f1f;
             --light: #f8f9fa;
             --dark: #212529;
             --success: #38b000;
@@ -106,10 +106,10 @@
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--secondary);
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
         }
         
         .hero p {
@@ -526,18 +526,18 @@
             border-radius: 5px;
             margin: 2rem 0;
             font-family: monospace;
-            color: #00ff00;
+            color: #ff0000;
             overflow: hidden;
         }
         
         .terminal-effect::before {
             content: '$ ';
-            color: #00ff00;
+            color: #ff7c55;
         }
         
         .typewriter {
             overflow: hidden;
-            border-right: .15em solid #00ff00;
+            border-right: .15em solid #ff7c55;
             white-space: nowrap;
             margin: 0 auto;
             animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
@@ -550,7 +550,7 @@
         
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: #00ff00 }
+            50% { border-color: #ff7c55 }
         }
     </style>
 </head>
@@ -676,5 +676,4 @@
 </script>
 </body>
 </html>
-        
-        
+
