@@ -7,13 +7,15 @@
     <style>
         /* COLOR SCHEME */
         :root {
-            --primary: #0081cc;
-            --secondary: #ff1a1a;
-            --accent: #ff1f1f;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #38b000; 
-        }
+            --primary: #005f99;      /* Professional blue */
+            --secondary: #d90429;    /* Strategic red (alerts/buttons only) */
+            --accent: #ef476f;       /* Use minimally for hover or highlights */
+            --light: #f1f1f1;        /* Backgrounds or text contrast */
+            --dark: #121212;         /* True dark background for SOC dashboard feel */
+            --success: #2e7d32;      /* Deeper green for success messages */
+            --warning: #f57c00;      /* Darker orange for warnings */
+            --error: #c62828;        /* Darker red for error messages */}
+ 
         
         * {
             margin: 0;
@@ -35,7 +37,7 @@
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(to right, #003f5c, #005f99);
             padding: 2rem 0;
             position: relative;
             overflow: hidden;
@@ -107,30 +109,30 @@
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            color: var(--secondary);
-            background: none;
-            -webkit-background-clip: unset;
-            background-clip: unset;
+            color: var(--primary); /* More professional, secure blue */
+            font-weight: 700;
         }
-        
+
+
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 2rem;
             color: #cccccc;
         }
-        
-        .cta-button {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 0, 110, 0.3);
+
+        .subtext-muted {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 1rem;
         }
+
+        
+        .cta-button:hover {
+            background: var(--secondary);
+            box-shadow: 0 6px 20px rgba(217, 4, 41, 0.4);
+        }
+
         
         .cta-button:hover {
             transform: translateY(-3px);
@@ -140,6 +142,24 @@
         .projects {
             padding: 4rem 0;
         }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+            margin: 2rem auto;
+            width: 80%;
+            border-radius: 1px;
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 0.15em solid var(--accent);
+            white-space: nowrap;
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+            max-width: 100%;
+        }
+
+
         
         .section-title {
             text-align: center;
@@ -517,24 +537,44 @@
         }
         
         .cta-button {
-            animation: pulse 2s infinite;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 95, 153, 0.4);
+            display: inline-block;
+            margin-top: 1rem;
         }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
         
         .terminal-effect {
-            position: relative;
+            background-color: #1e1e1e;
+            color: var(--light);
             padding: 1rem;
-            background-color: #282828;
-            border-radius: 5px;
-            margin: 2rem 0;
             font-family: monospace;
-            color: #ff0000;
-            overflow: hidden;
+            border-left: 4px solid var(--primary);
+            border-radius: 6px;
+            margin: 1rem auto;
+            max-width: 700px;
+            font-size: 1rem;
+            line-height: 1.5;
         }
-        
+
         .terminal-effect::before {
             content: '$ ';
-            color: #ff7c55;
+            color: var(--accent);
         }
+
+
         
         .typewriter {
             overflow: hidden;
@@ -560,12 +600,13 @@
         <div class="container header-content">
             <a href="#" class="logo">Rudi<span>Coetzee</span>/homepage</a>
             <nav>
-                <ul>
+                <!--<ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#workingonthis">About</a></li>
                     <li><a href="#nothingyet">Contact</a></li>
                 </ul>
+                >-->
             </nav>
         </div>
     </header>
@@ -573,14 +614,17 @@
     <section class="hero">
         <div class="container">
             <h1>Cybersecurity Portfolio</h1>
-            <p>Passionate cybersecurity student with a focus on ethical hacking, penetration testing, and secure application development and always willing to learn more.</p>
-            <p2> All my projects are still a work in progress and are currently private repositories!</p2>
+            <p>Driven cybersecurity student with a passion for log analysis, SIEM development, and securing IT systems. Currently studying towards a Diploma in Cybersecurity (NQF 6) (2025) and gaining hands-on experience through self-developed tools and home lab setups.</p>
+            <p class="subtext-muted">All my projects are still a work in progress...</p>
             <div class="terminal-effect">
                 <div class="typewriter">Exploring vulnerabilities, securing systems, protecting data.</div>
             </div>
             <a href="#projects" class="cta-button">View My Projects</a>
         </div>
     </section>
+
+    <div class="section-divider"></div>
+
 
     <section id="projects" class="projects">
         <div class="container">
@@ -591,17 +635,15 @@
                 <div class="project-card">
                     <div class="project-card-content">
                         <h3 class="project-title">Threat Intelligence Dashboard</h3>
-                        <a href="https://github.com/rudivcoetzee/notyetadded" class="project-repo">
+                        <a href="https://github.com/rudivcoetzee/" class="project-repo">
                             <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
                             </svg>
-                            workinprogress/SMB-dashboardTID
+                            rudivcoetzee/SMB-dashboardTID
                         </a>
                         <p class="project-description">Small to Medium sized business Threat Intelligence Dashboard</p>
                         <div class="tech-stack">
-                            <span class="tech-badge">React.js</span>
-                            <span class="tech-badge">Node.js</span>
-                            <span class="tech-badge">ASP.NET Core Web API</span>
+                            <span class="tech-badge">WORK-IN-PROGRESS</span>
                         </div>
                     </div>
                 </div>
@@ -614,7 +656,7 @@
                             </svg>
                             rudivcoetzee/aegis-sim
                         </a>
-                        <p class="project-description">My SIEM Tool which I'm currently devloping.</p>
+                        <p class="project-description">A lightweight, Python-based SIEM tool designed to simulate real-world incident detection in small-scale environments. Aegis parses mock log data to identify threats such as brute-force attacks and privilege escalation using a modular rule engine. </p>
                         <div class="tech-stack">
                             <span class="tech-badge">Python </span>
                             <span class="tech-badge">Custom Python</span>
@@ -626,24 +668,24 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="project-card">
+                <div class="project-card">
                     <div class="project-card-content">
-                        <h3 class="project-title">Project</h3>
-                        <a href="https://github.com/rudivcoetzee/malware-analysis-toolkit" class="project-repo">
+                        <h3 class="project-title">Manager API</h3>
+                        <a href="https://github.com/rudivcoetzee/ADP631_FA2" class="project-repo">
                             <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
                             </svg>
-                            username/malware-analysis-toolkit
+                            rudivcoetzee/book-manager-api
                         </a>
-                        <p class="project-description">A sandbox environment and analysis tools for safely examining malicious software and understanding its behavior.</p>
+                        <p class="project-description">This project is a RESTful Book Manager API built using ASP.NET Core Minimal APIs with Entity Framework Core and a SQL Server backend. It demonstrates full CRUD functionality and follows a clean, professional structure.</p>
                         <div class="tech-stack">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Docker</span>
-                            <span class="tech-badge">Assembly</span>
-                            <span class="tech-badge">YARA</span>
+                            <span class="tech-badge">RESTful</span>
+                            <span class="tech-badge">ASP.NET Core</span>
+                            <span class="tech-badge">SQL</span>
+                            <span class="tech-badge">Database</span>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <div class="project-card">
                     <div class="project-card-content">
                         <h3 class="project-title">Port_Scanner</h3>
@@ -653,7 +695,7 @@
                             </svg>
                             rudivcoetzee/port_scanner
                         </a>
-                        <p class="project-description">Low level port scanner, very easy to use and implement</p>
+                        <p class="project-description">The scanner performs basic service enumeration to detect commonly exposed services and ports, assisting with early-stage threat assessments and vulnerability discovery.</p>
                         <div class="tech-stack">
                             <span class="tech-badge">Python</span>
                             <span class="tech-badge">Socket</span>
